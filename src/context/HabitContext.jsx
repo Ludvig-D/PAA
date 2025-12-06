@@ -1,15 +1,17 @@
-const { createContext, useState } = require('react');
+import { createContext, useState } from 'react';
 
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
   const [habits, setHabits] = useState([]);
 
-  const addHabits = (newHabit) => {
+  const addNewHabit = (newHabit) => {
     setHabits((prev) => [...prev, newHabit]);
   };
 
-  return <HabitContext value={{ addHabits }}>{children}</HabitContext>;
+  return (
+    <HabitContext value={{ habits, addNewHabit }}>{children}</HabitContext>
+  );
 };
 
 export default HabitProvider;
