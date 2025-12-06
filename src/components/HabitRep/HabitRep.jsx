@@ -9,7 +9,7 @@ export default function HabitRep({ rep, id }) {
       <button onClick={() => handelHabitRep(id, 'incremnt')}>+</button>
       <p>{rep}</p>
       <button onClick={() => handelHabitRep(id, 'decremnt')}>-</button>
-      <button>Reset</button>
+      <button onClick={() => handelHabitRep(id, 'reset')}>Reset</button>
     </div>
   );
 }

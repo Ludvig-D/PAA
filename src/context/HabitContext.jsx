@@ -26,6 +26,10 @@ const HabitProvider = ({ children }) => {
       rep.repetisions++;
     } else if (action === 'decremnt' && rep.repetisions > 0) {
       rep.repetisions--;
+    } else if (action === 'reset') {
+      rep.repetisions = 0;
+    } else {
+      return;
     }
     setHabits(newHabits);
   };
