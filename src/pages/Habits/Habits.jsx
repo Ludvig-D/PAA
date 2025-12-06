@@ -14,6 +14,22 @@ export default function Habits() {
     setHabitList(newList);
   };
 
+  const sortHabits = (sort) => {
+    if (sort === 'default') {
+      setHabitList(habits);
+    } else if (sort === 'repsfall') {
+      setHabitList((habits) =>
+        [...habits].sort((a, b) => a.repetisions - b.repetisions)
+      );
+    } else if (sort === 'repsrise') {
+      setHabitList((habits) =>
+        [...habits].sort((a, b) => b.repetisions - a.repetisions)
+      );
+    } else if (sort === 'priofall') {
+    } else if (sort === 'priorise') {
+    }
+  };
+
   return (
     <>
       <p>Habits</p>
@@ -27,6 +43,18 @@ export default function Habits() {
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
+      </select>
+
+      <select
+        name="sort"
+        id="sort"
+        onChange={(e) => sortHabits(e.target.value)}
+      >
+        <option value="default">Default</option>
+        <option value="repsfall">Reps Fall</option>
+        <option value="repsrise">Reps Rise</option>
+        <option value="priofall">Prio Fall</option>
+        <option value="priorise">Prio Rise</option>
       </select>
 
       <div>
