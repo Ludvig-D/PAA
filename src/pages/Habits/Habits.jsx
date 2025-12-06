@@ -10,6 +10,7 @@ export default function Habits() {
 
   const filterHabits = (filter) => {
     const list = [...habits];
+    if (filter === 'all') return setHabitList(list);
     const newList = list.filter((habit) => habit.priority === filter);
     setHabitList(newList);
   };
@@ -40,6 +41,7 @@ export default function Habits() {
         id="filter"
         onChange={(e) => filterHabits(e.target.value)}
       >
+        <option value="all">All</option>
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
