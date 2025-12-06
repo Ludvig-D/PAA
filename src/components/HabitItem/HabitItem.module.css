@@ -1,0 +1,17 @@
+#firstRow {
+  display: flex;
+  gap: 1rem;
+}
+
+#item {
+  background-color: green;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-bottom: 4px solid black;
+}
+
+#item:first-child {
+  border-top: 4px solid black;
+}
