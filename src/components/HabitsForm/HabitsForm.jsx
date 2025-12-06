@@ -19,9 +19,10 @@ export default function HabitsForm() {
     e.preventDefault();
 
     const newHabit = {
-      title: title,
+      title,
       repetisions: 0,
       priority,
+      id: crypto.randomUUID(),
     };
 
     addNewHabit(newHabit);

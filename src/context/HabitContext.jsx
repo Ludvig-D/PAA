@@ -9,12 +9,22 @@ const HabitProvider = ({ children }) => {
     setHabits((prev) => [...prev, newHabit]);
   };
 
-  // useEffect(() => {
-  //   console.log(habits);
-  // }, [habits]);
+  const removeHabit = (id) => {
+    setHabits((prev) =>
+      prev.filter((habit) => {
+        if (habit.id !== id) return habit;
+      })
+    );
+  };
+
+  useEffect(() => {
+    console.log(habits);
+  }, [habits]);
 
   return (
-    <HabitContext value={{ habits, addNewHabit }}>{children}</HabitContext>
+    <HabitContext value={{ habits, addNewHabit, removeHabit }}>
+      {children}
+    </HabitContext>
   );
 };
 
