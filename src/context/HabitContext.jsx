@@ -3,7 +3,9 @@ import { createContext, useEffect, useState } from 'react';
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
-  const [habits, setHabits] = useState([]);
+  const [habits, setHabits] = useState(
+    JSON.parse(localStorage.getItem('habits')) || []
+  );
 
   const addNewHabit = (newHabit) => {
     setHabits((prev) => [...prev, newHabit]);
@@ -18,7 +20,7 @@ const HabitProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(habits);
+    localStorage.setItem('habits', JSON.stringify(habits));
   }, [habits]);
 
   return (
