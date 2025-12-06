@@ -19,12 +19,30 @@ const HabitProvider = ({ children }) => {
     );
   };
 
+  const handelHabitRep = (id, action) => {
+    const newHabits = [...habits];
+    const rep = newHabits.find((habit) => habit.id === id);
+    if (action === 'incremnt') {
+      rep.repetisions++;
+    } else if (action === 'decremnt' && rep.repetisions > 0) {
+      rep.repetisions--;
+    }
+    setHabits(newHabits);
+  };
+
   useEffect(() => {
     localStorage.setItem('habits', JSON.stringify(habits));
   }, [habits]);
 
   return (
-    <HabitContext value={{ habits, addNewHabit, removeHabit }}>
+    <HabitContext
+      value={{
+        habits,
+        addNewHabit,
+        removeHabit,
+        handelHabitRep,
+      }}
+    >
       {children}
     </HabitContext>
   );

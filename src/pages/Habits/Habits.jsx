@@ -6,7 +6,6 @@ import HabitItem from '../../components/HabitItem/HabitItem';
 export default function Habits() {
   const { habits } = useContext(HabitContext);
 
-  console.log(habits);
   return (
     <>
       <p>Habits</p>
