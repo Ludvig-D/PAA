@@ -4,9 +4,9 @@ import { HabitContext } from '../../context/HabitContext';
 import HabitItem from '../../components/HabitItem/HabitItem';
 
 export default function Habits() {
-  const { habits } = useContext(HabitContext);
+  const { allHabits } = useContext(HabitContext);
 
-  const [habitList, setHabitList] = useState(habits);
+  const [habitList, setHabitList] = useState(allHabits);
   const [sort, setSort] = useState('default');
 
   const addToHabitList = (newHabit) => {
@@ -14,7 +14,7 @@ export default function Habits() {
   };
 
   const filterHabits = (filter) => {
-    const list = [...habits];
+    const list = [...allHabits];
     if (filter === 'all') {
       setHabitList(list);
       sortHabits(sort);
@@ -30,7 +30,7 @@ export default function Habits() {
     if (sort === 'default') {
       setHabitList((prev) =>
         [...prev].sort((a, b) => {
-          return habits.indexOf(a) - habits.indexOf(b);
+          return allHabits.indexOf(a) - allHabits.indexOf(b);
         })
       );
     } else if (sort === 'repsfall') {
@@ -104,7 +104,7 @@ export default function Habits() {
 
       <div>
         {habitList.map((habit) => (
-          <HabitItem habit={habit} />
+          <HabitItem key={habit.id} habit={habit} />
         ))}
       </div>
     </>

@@ -3,16 +3,16 @@ import { createContext, useEffect, useState } from 'react';
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
-  const [habits, setHabits] = useState(
+  const [allHabits, setAllHabits] = useState(
     JSON.parse(localStorage.getItem('habits')) || []
   );
 
   const addNewHabit = (newHabit) => {
-    setHabits((prev) => [...prev, newHabit]);
+    setAllHabits((prev) => [...prev, newHabit]);
   };
 
   const removeHabit = (id) => {
-    setHabits((prev) =>
+    setAllHabits((prev) =>
       prev.filter((habit) => {
         if (habit.id !== id) return habit;
       })
@@ -20,7 +20,7 @@ const HabitProvider = ({ children }) => {
   };
 
   const handelHabitRep = (id, action) => {
-    const newHabits = [...habits];
+    const newHabits = [...allHabits];
     const rep = newHabits.find((habit) => habit.id === id);
     if (action === 'incremnt') {
       rep.repetisions++;
@@ -31,17 +31,17 @@ const HabitProvider = ({ children }) => {
     } else {
       return;
     }
-    setHabits(newHabits);
+    setAllHabits(newHabits);
   };
 
   useEffect(() => {
-    localStorage.setItem('habits', JSON.stringify(habits));
-  }, [habits]);
+    localStorage.setItem('habits', JSON.stringify(allHabits));
+  }, [allHabits]);
 
   return (
     <HabitContext
       value={{
-        habits,
+        allHabits,
         addNewHabit,
         removeHabit,
         handelHabitRep,
