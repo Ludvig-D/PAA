@@ -7,6 +7,7 @@ export default function Habits() {
   const { habits } = useContext(HabitContext);
 
   const [habitList, setHabitList] = useState(habits);
+  const [sort, setSort] = useState('default');
 
   const addToHabitList = (newHabit) => {
     setHabitList((prev) => [...prev, newHabit]);
@@ -14,12 +15,18 @@ export default function Habits() {
 
   const filterHabits = (filter) => {
     const list = [...habits];
-    if (filter === 'all') return setHabitList(list);
+    if (filter === 'all') {
+      setHabitList(list);
+      sortHabits(sort);
+      return;
+    }
     const newList = list.filter((habit) => habit.priority === filter);
     setHabitList(newList);
+    sortHabits(sort);
   };
 
   const sortHabits = (sort) => {
+    setSort(sort);
     if (sort === 'default') {
       setHabitList((prev) =>
         [...prev].sort((a, b) => {
