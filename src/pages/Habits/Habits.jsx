@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import HabitsForm from '../../components/HabitsForm/HabitsForm';
 import { HabitContext } from '../../context/HabitContext';
 import HabitItem from '../../components/HabitItem/HabitItem';
@@ -7,6 +7,10 @@ export default function Habits() {
   const { habits } = useContext(HabitContext);
 
   const [habitList, setHabitList] = useState(habits);
+
+  const addToHabitList = (newHabit) => {
+    setHabitList((prev) => [...prev, newHabit]);
+  };
 
   const filterHabits = (filter) => {
     const list = [...habits];
@@ -17,7 +21,11 @@ export default function Habits() {
 
   const sortHabits = (sort) => {
     if (sort === 'default') {
-      setHabitList(habits);
+      setHabitList((prev) =>
+        [...prev].sort((a, b) => {
+          return habits.indexOf(a) - habits.indexOf(b);
+        })
+      );
     } else if (sort === 'repsfall') {
       setHabitList((habits) =>
         [...habits].sort((a, b) => a.repetisions - b.repetisions)
@@ -26,15 +34,43 @@ export default function Habits() {
       setHabitList((habits) =>
         [...habits].sort((a, b) => b.repetisions - a.repetisions)
       );
-    } else if (sort === 'priofall') {
     } else if (sort === 'priorise') {
+      const order = {
+        high: 1,
+        medium: 2,
+        low: 3,
+      };
+
+      setHabitList((prev) =>
+        [...prev].sort((a, b) => {
+          const rankA = order[a.priority];
+          const rankB = order[b.priority];
+
+          return rankA - rankB;
+        })
+      );
+    } else if (sort === 'priofall') {
+      const order = {
+        low: 1,
+        medium: 2,
+        high: 3,
+      };
+
+      setHabitList((prev) =>
+        [...prev].sort((a, b) => {
+          const rankA = order[a.priority];
+          const rankB = order[b.priority];
+
+          return rankA - rankB;
+        })
+      );
     }
   };
 
   return (
     <>
       <p>Habits</p>
-      <HabitsForm />
+      <HabitsForm addHabit={addToHabitList} />
 
       <select
         name="filter"
