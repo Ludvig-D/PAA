@@ -102,11 +102,22 @@ const HabitProvider = ({ children }) => {
     }
   };
 
+  const [hphl, setHphl] = useState([]);
+
+  useEffect(() => {
+    const habits = [...allHabits];
+
+    const sortedHabits = habits.sort((a, b) => b.repetisions - a.repetisions);
+
+    setHphl([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
+  }, [allHabits]);
+
   return (
     <HabitContext
       value={{
         allHabits,
         habitList,
+        hphl,
         addNewHabit,
         removeHabit,
         handelHabitRep,
