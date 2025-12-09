@@ -9,9 +9,12 @@ const HabitProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('habits', JSON.stringify(allHabits));
+    setHabitList(allHabits);
+    filterHabits(filter);
   }, [allHabits]);
 
   const [sort, setSort] = useState('default');
+  const [filter, setFilter] = useState('all');
   const [habitList, setHabitList] = useState(allHabits);
 
   const addNewHabit = (newHabit) => {
@@ -20,6 +23,12 @@ const HabitProvider = ({ children }) => {
 
   const removeHabit = (id) => {
     setAllHabits((prev) =>
+      prev.filter((habit) => {
+        if (habit.id !== id) return habit;
+      })
+    );
+
+    setHabitList((prev) =>
       prev.filter((habit) => {
         if (habit.id !== id) return habit;
       })
@@ -42,6 +51,7 @@ const HabitProvider = ({ children }) => {
   };
 
   const filterHabits = (filter) => {
+    setFilter(filter);
     const list = [...allHabits];
     if (filter === 'all') {
       setHabitList(list);

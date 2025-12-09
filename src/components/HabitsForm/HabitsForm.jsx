@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import style from './HabitsForm.module.css';
 import { HabitContext } from '../../context/HabitContext.jsx';
 
-export default function HabitsForm({ addHabit }) {
+export default function HabitsForm() {
   const { addNewHabit } = useContext(HabitContext);
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('low');
@@ -26,7 +26,6 @@ export default function HabitsForm({ addHabit }) {
     };
 
     addNewHabit(newHabit);
-    addHabit(newHabit);
 
     setTitle('');
     setPriority('low');
