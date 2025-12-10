@@ -3,6 +3,7 @@ import HabitsForm from '../../components/HabitsForm/HabitsForm';
 import { HabitContext } from '../../context/HabitContext';
 import HabitItem from '../../components/HabitItem/HabitItem';
 import HabitSelects from '../../components/HabitSelects/HabitSelects';
+import style from './Habits.module.css';
 
 export default function Habits() {
   const { habitList } = useContext(HabitContext);
@@ -12,7 +13,7 @@ export default function Habits() {
       <h1>Habits</h1>
       <HabitsForm />
       <HabitSelects />
-      <div>
+      <div id={style.habitContainer}>
         {habitList.map((habit) => (
           <HabitItem key={habit.id} habit={habit} />
         ))}
