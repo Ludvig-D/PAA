@@ -1,16 +1,12 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
-import './App.css';
+import { EventProvider } from "./context/EventContext"
+import EventPage from "./pages/Events/EventPage.jsx"
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+    <EventProvider>
+      <EventPage/>
+    </EventProvider>
+  )
 }
 
-export default App;
+export default App
