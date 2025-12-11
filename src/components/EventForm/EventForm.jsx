@@ -18,16 +18,16 @@ function EventForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Start</label>
-        <input type="datetime-local" value={start} onChange={e => setStart(e.target.value)}/>
+        <label htmlFor="Start">Start</label>
+        <input required type="datetime-local" value={start} onChange={e => setStart(e.target.value)}/>
       </div>
       <div>
         <label>Slut</label>
-        <input type="datetime-local" value={end} onChange={e => setEnd(e.target.value)}/>
+        <input required type="datetime-local" value={end} onChange={e => setEnd(e.target.value)}/>
       </div>
       <div>
         <label>Händelse</label>
-        <input value={name} onChange={e => setName(e.target.value)}/>
+        <input required value={name} onChange={e => setName(e.target.value)}/>
       </div>
       <button>Lägg till</button>
     </form>
