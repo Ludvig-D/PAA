@@ -7,13 +7,22 @@ export default function HabitItem({ habit }) {
   const { removeHabit } = useContext(HabitContext);
 
   return (
-    <div id={style.item}>
-      <div id={style.firstRow}>
-        <p id={style.title}>{habit.title}</p>
-        <p id={style.priority}>{habit.priority}</p>
+    <div className={style.item}>
+      <div>
+        <p className={style.title}>{habit.title}</p>
+        <p className={`${style.tag} ${style[habit.priority]}`}>
+          {habit.priority}
+        </p>
+        <HabitRep rep={habit.repetisions} id={habit.id} />
       </div>
-      <HabitRep rep={habit.repetisions} id={habit.id} />
-      <button onClick={() => removeHabit(habit.id)}>Remove Habit</button>
+      <div className={style.removeBtnDiv}>
+        <button
+          className={style.removeBtn}
+          onClick={() => removeHabit(habit.id)}
+        >
+          Remove Habit
+        </button>
+      </div>
     </div>
   );
 }
