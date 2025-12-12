@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
-const Home = () => {
+import { TodoContext } from '../context/TodoContext'; 
+const TodoListPage = () => {
     const navigate = useNavigate();
-    const [todos, setTodos] = useState([]);
+    const { todos } = useContext(TodoContext); 
 
 
 
@@ -36,4 +37,4 @@ const Home = () => {
 
 
 
-export default Home
+export default TodoListPage;

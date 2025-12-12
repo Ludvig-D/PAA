@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TodoContext } from '../context/TodoContext';
 
 const TodoForm = () => {
     const navigate = useNavigate();
+    const {addTodo}= useContext(TodoContext);
 
     // State för formuläret
     const [formData, setFormData] = useState({
@@ -15,8 +17,9 @@ const TodoForm = () => {
     });
 
     const handleSubmit = () => {
-        console.log('Formulärdata:', formData);
-        // Här ska jag senare lägga till todo
+  
+        addTodo(formData);
+        navigate('/todos');
     };
 
     const handleCancel = () => {
