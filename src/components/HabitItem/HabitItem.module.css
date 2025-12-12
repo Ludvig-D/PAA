@@ -9,8 +9,15 @@
   border-radius: 15px;
 }
 
+.tag {
+  font-weight: bold;
+  text-transform: capitalize;
+  text-shadow: 2px 2px 6px #000;
+}
+
 .high {
   color: #ed2938;
+  text-shadow: 2px 2px 25px #000;
 }
 
 .medium {
@@ -19,11 +26,6 @@
 
 .low {
   color: #ffe733;
-}
-
-.tag {
-  font-weight: bold;
-  text-transform: capitalize;
 }
 
 .removeBtn {
