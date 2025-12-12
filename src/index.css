@@ -8,14 +8,14 @@ html,
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 :root {
   --border-color: #1b778c;
-  --foreground-color: #66c4d9;
+  --background-color: #66c4d9;
   --button-color: #537310;
-  --background-color: #f2ebc9;
+  --forground-color: #f2ebc9;
   --text-color: #000000;
   /* dont know if we will use #A0EAF2 */
 }

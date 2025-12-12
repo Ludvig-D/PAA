@@ -40,10 +40,11 @@ export default function HabitsForm({ toggleHide }) {
 
   return (
     <div id={style.background}>
-      <div>
+      <div id={style.forground}>
+        <h1>New Habit</h1>
         <form onSubmit={(e) => createHabit(e)}>
-          <div>
-            <label htmlFor="title">Title</label>
+          <div className={style.inputDiv}>
+            <label htmlFor="title">Title </label>
             <input
               type="text"
               id="title"
@@ -51,9 +52,11 @@ export default function HabitsForm({ toggleHide }) {
               required
               onChange={(e) => titleChange(e)}
               value={title}
+              placeholder="Title"
             />
           </div>
-          <div>
+          <div className={style.inputDiv}>
+            <label htmlFor="prioity">Prioity </label>
             <select
               name="priority"
               id="prioity"
@@ -65,10 +68,14 @@ export default function HabitsForm({ toggleHide }) {
               <option value="high">High</option>
             </select>
           </div>
-          <button type="submit">Add Habit</button>
-          <button type="button" onClick={() => close()}>
-            Close
-          </button>
+          <div id={style.btnDiv}>
+            <button className={style.btn} type="submit">
+              Add Habit
+            </button>
+            <button className={style.btn} type="button" onClick={() => close()}>
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>
