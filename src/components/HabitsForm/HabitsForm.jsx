@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import style from './HabitsForm.module.css';
 import { HabitContext } from '../../context/HabitContext.jsx';
 
-export default function HabitsForm() {
+export default function HabitsForm({ toggleHide }) {
   const { addNewHabit } = useContext(HabitContext);
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('low');
@@ -26,6 +26,13 @@ export default function HabitsForm() {
     };
 
     addNewHabit(newHabit);
+
+    setTitle('');
+    setPriority('low');
+  };
+
+  const close = () => {
+    toggleHide();
 
     setTitle('');
     setPriority('low');
@@ -59,6 +66,9 @@ export default function HabitsForm() {
             </select>
           </div>
           <button type="submit">Add Habit</button>
+          <button type="button" onClick={() => close()}>
+            Close
+          </button>
         </form>
       </div>
     </div>
