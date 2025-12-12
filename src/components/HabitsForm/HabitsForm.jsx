@@ -26,9 +26,7 @@ export default function HabitsForm({ toggleHide }) {
     };
 
     addNewHabit(newHabit);
-
-    setTitle('');
-    setPriority('low');
+    close();
   };
 
   const close = () => {
@@ -72,7 +70,12 @@ export default function HabitsForm({ toggleHide }) {
             <button className={style.btn} type="submit">
               Add Habit
             </button>
-            <button className={style.btn} type="button" onClick={() => close()}>
+            <button
+              className={style.btn}
+              id={style.closeBtn}
+              type="button"
+              onClick={() => close()}
+            >
               Close
             </button>
           </div>

@@ -9,6 +9,11 @@
   border: 1px solid var(--border-color);
   border-radius: 10px;
   font-weight: bold;
+  background-color: var(--button-color);
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 .resetBtn {
@@ -17,4 +22,8 @@
   border: 1px solid var(--border-color);
   border-radius: 10px;
   background-color: var(--delete-color);
+}
+
+.resetBtn:hover {
+  cursor: pointer;
 }

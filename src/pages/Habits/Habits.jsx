@@ -15,16 +15,20 @@ export default function Habits() {
   };
 
   return (
-    <>
+    <div id={style.mainContainer}>
       <h1>Habits</h1>
-      <button onClick={() => toggleHide()}>Add habit</button>
-      {hideCreate && <HabitsForm toggleHide={toggleHide} />}
-      <HabitSelects />
+      <div id={style.test}>
+        <button id={style.hideBtn} onClick={() => toggleHide()}>
+          Add habit
+        </button>
+        {hideCreate && <HabitsForm toggleHide={toggleHide} />}
+        <HabitSelects />
+      </div>
       <div id={style.habitContainer}>
         {habitList.map((habit) => (
           <HabitItem key={habit.id} habit={habit} />
         ))}
       </div>
-    </>
+    </div>
   );
 }

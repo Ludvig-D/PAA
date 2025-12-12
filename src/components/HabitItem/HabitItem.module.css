@@ -1,6 +1,5 @@
 .item {
   background-color: var(--background-color);
-  opacity: 0.8;
   padding: 2rem 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -39,9 +38,16 @@
   width: 8.5rem;
   height: 2.5rem;
 }
+.removeBtn:hover {
+  cursor: pointer;
+}
 
 .removeBtnDiv {
   display: flex;
   justify-content: right;
   align-items: end;
+}
+
+.title {
+  text-transform: capitalize;
 }
