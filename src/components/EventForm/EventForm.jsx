@@ -1,5 +1,7 @@
 import { useState, useContext } from "react"
 import { EventContext } from "../../context/EventContext"
+import "./EventForm.css"
+
 
 function EventForm() {
   const { addEvent } = useContext(EventContext)
@@ -16,7 +18,7 @@ function EventForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="event-form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="Start">Start</label>
         <input required type="datetime-local" value={start} onChange={e => setStart(e.target.value)}/>

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { EventContext } from "../../context/EventContext"
 import "./EventItem.css"
+
 function EventItem({ event }) {
   const { removeEvent, updateEvent } = useContext(EventContext)
   const [editing, setEditing] = useState(false)
@@ -26,12 +27,15 @@ function EventItem({ event }) {
   }
 
   return (
-    <div className={event.end < Date.now && 'grey'}>
-      <div>{event.name}</div>
+    <div className={`event-item ${event.end < Date.now() ? "grey" : ""}`}>
+      <div className="event-item-info">
+<div>{event.name}</div>
       <div>Start {event.start}</div>
       <div>Slut {event.end}</div>
       <button onClick={() => setEditing(true)}>Redigera</button>
       <button onClick={() => removeEvent(event.id)}>Ta bort</button>
+      </div>
+      
     </div>
   )
 }

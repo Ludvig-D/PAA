@@ -1,0 +1,36 @@
+.event-form {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.event-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-form label {
+  font-size: 12px;
+  color: #666;
+}
+
+.event-form input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.event-form button {
+  background:#537310;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+

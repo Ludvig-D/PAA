@@ -1,3 +1,27 @@
-.grey{
-    color: grey;
+.event-item {
+  background: white;
+  padding: 16px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.event-item.grey {
+  opacity: 0.5;
+}
+
+.event-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-item button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #537310;
+  font-size: 13px;
 }
