@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { EventContext } from "../../context/EventContext"
 import EventItem from "../EventItem/EventItem"
-import "./EventList.css"
+import style from "./EventList.module.css"
 
 function EventList({ filter }) {
   const { events } = useContext(EventContext)
@@ -15,7 +15,7 @@ function EventList({ filter }) {
   })
 
   return (
-    <div className="event-list">
+    <div className={"style.eventlist"}>
       {filtered.map(event => (
         <EventItem key={event.id} event={event}/>
       ))}

@@ -1,4 +1,4 @@
-.event-item {
+.eventitem {
   background: white;
   padding: 16px;
   border-radius: 14px;
@@ -8,17 +8,17 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.event-item.grey {
+.grey {
   opacity: 0.5;
 }
 
-.event-item-info {
+.eventiteminfo {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.event-item button {
+.eventitem button {
   border: none;
   background: transparent;
   cursor: pointer;

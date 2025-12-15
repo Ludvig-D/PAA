@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { EventContext } from "../../context/EventContext"
-import "./EventForm.css"
+import style from "./EventForm.module.css"
 
 
 function EventForm() {
@@ -18,18 +18,24 @@ function EventForm() {
   }
 
   return (
-    <form className="event-form" onSubmit={handleSubmit}>
+    <form className= {style.eventform} onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="Start">Start</label>
-        <input required type="datetime-local" value={start} onChange={e => setStart(e.target.value)}/>
+        <label htmlFor="start">Start</label>
+        <input
+        id="start" 
+        required type="datetime-local" value={start} onChange={e => setStart(e.target.value)}/>
       </div>
       <div>
-        <label>Slut</label>
-        <input required type="datetime-local" value={end} onChange={e => setEnd(e.target.value)}/>
+        <label htmlFor="slut" >Slut</label>
+        <input 
+        id="slut"
+        required type="datetime-local" value={end} onChange={e => setEnd(e.target.value)}/>
       </div>
       <div>
-        <label>Händelse</label>
-        <input required value={name} onChange={e => setName(e.target.value)}/>
+        <label htmlFor="event" >Händelse</label>
+        <input 
+        id="event"
+        required value={name} onChange={e => setName(e.target.value)}/>
       </div>
       <button>Lägg till</button>
     </form>
