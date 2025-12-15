@@ -1,20 +1,29 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleGoToTodos = () => {
-        navigate('/todos');
-    };
+  const handleGoToTodos = () => {
+    navigate('/todos');
+  };
 
-    return(
-        <div>
-            <h1>Välkommen!</h1>
-            <p>Här är olika funktionerna att välja ifrån</p>
-            <button onClick={handleGoToTodos}>Gå till Todos & Activity</button>
-        </div>
-    )
-}
+  const handleGoToEvents = () => {
+    navigate('/event');
+  };
+
+  const handleGoToHabits = () => {
+    navigate('/habits');
+  };
+
+  return (
+    <div>
+      <h1>Välkommen!</h1>
+      <p>Här är olika funktionerna att välja ifrån</p>
+      <button onClick={handleGoToTodos}>Gå till Todos & Activity</button>
+      <button onClick={handleGoToEvents}>Gå till Event planer</button>
+      <button onClick={handleGoToHabits}>Gå till Habits</button>
+    </div>
+  );
+};
 
 export default Home;
