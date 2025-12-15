@@ -1,26 +1,23 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
-import './App.css';
-import Habits from './pages/Habits/Habits';
-import TodoForm from './pages/TodoForm';
+import { BrowserRouter, Routes, Route } from 'react-router';
+
 import Home from './pages/Home';
+import EventPage from './pages/Events/EventPage.jsx';
+import Habits from './pages/Habits/Habits';
 import TodoListPage from './pages/TodoListPage';
-import {TodoProvider} from './context/TodoContext';
 
-
+import TodoForm from './pages/TodoForm';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <TodoProvider>
         <Routes>
-          <Route path="/" element={<Home/>} />;
+          <Route path="/" element={<Home />} />;
           <Route path="/habits" element={<Habits />} />
-          <Route path="todos" element={<TodoListPage/>}/>;
-          <Route path="/form" element={<TodoForm/>} />;
-        
+          <Route path="todos" element={<TodoListPage />} />;
+          <Route path="/form" element={<TodoForm />} />;
+          <Route path="/event" element={<EventPage />} />;
         </Routes>
-        </TodoProvider>
       </BrowserRouter>
     </>
   );

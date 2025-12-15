@@ -1,13 +1,21 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App.jsx';
+
 import HabitProvider from './context/HabitContext.jsx';
+import { EventProvider } from './context/EventContext';
+import { TodoProvider } from './context/TodoContext';
+
+import App from './App.jsx';
+import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HabitProvider>
-      <App />
+      <EventProvider>
+        <TodoProvider>
+          <App />
+        </TodoProvider>
+      </EventProvider>
     </HabitProvider>
   </StrictMode>
 );
