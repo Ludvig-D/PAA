@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 export default function SignIn() {
+  const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    let use = login({ username, password });
+    console.log(use);
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username</label>
           <input

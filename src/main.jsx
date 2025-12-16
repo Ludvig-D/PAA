@@ -11,14 +11,14 @@ import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HabitProvider>
-      <EventProvider>
-        <TodoProvider>
-          <AuthProrivder>
+    <AuthProrivder>
+      <HabitProvider>
+        <EventProvider>
+          <TodoProvider>
             <App />
-          </AuthProrivder>
-        </TodoProvider>
-      </EventProvider>
-    </HabitProvider>
+          </TodoProvider>
+        </EventProvider>
+      </HabitProvider>
+    </AuthProrivder>
   </StrictMode>
 );

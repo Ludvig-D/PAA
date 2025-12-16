@@ -6,11 +6,23 @@ const AuthProvider = ({ children }) => {
   const [allData, setAllData] = useState([]);
 
   function createAccount(newAccount) {
+    let userExist = allData.find(
+      (data) => data.username === newAccount.username
+    );
+    if (userExist) return false;
+
     setAllData((prev) => [...prev, newAccount]);
-    console.log(allData);
   }
 
-  return <AuthContext value={{ createAccount }}>{children}</AuthContext>;
+  function login(loginData) {
+    const { username, password } = loginData;
+    let userExist = allData.find((data) => data.username === username);
+    if (!userExist || userExist.password !== password) return false;
+
+    return userExist;
+  }
+
+  return <AuthContext value={{ createAccount, login }}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
