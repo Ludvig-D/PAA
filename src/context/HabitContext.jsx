@@ -111,8 +111,8 @@ const HabitProvider = ({ children }) => {
       );
     }
   };
-
-  const [hphl, setHphl] = useState([]);
+ //Home Page
+  const [HomeHabits, setHphl] = useState([]);
 
   useEffect(() => {
     const habits = [...allHabits];
@@ -127,7 +127,7 @@ const HabitProvider = ({ children }) => {
       value={{
         allHabits,
         habitList,
-        hphl,
+        HomeHabits,
         addNewHabit,
         removeHabit,
         handelHabitRep,
