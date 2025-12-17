@@ -4,12 +4,18 @@ export default function SignIn() {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [quote, setQuote] = useState('');
   function handleSubmit(e) {
     e.preventDefault();
 
-    let use = login({ username, password });
-    console.log(use);
+    let successFulLogin = login({ username, password });
+    if (successFulLogin) {
+      fetch('https://api.kanye.rest/')
+        .then((res) => res.json())
+        .then((data) => setQuote(data));
+    }
   }
+  console.log(quote);
   return (
     <>
       <form onSubmit={handleSubmit}>

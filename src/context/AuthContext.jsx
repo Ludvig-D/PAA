@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
 
     setUserData(userExist);
 
-    return userExist;
+    return true;
   }
 
   function createAccount(newAccount) {
