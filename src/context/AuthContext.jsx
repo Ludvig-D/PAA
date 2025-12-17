@@ -15,9 +15,14 @@ const AuthProvider = ({ children }) => {
   }, [allData]);
 
   useEffect(() => {
-    sessionStorage.setItem('userData', JSON.stringify(userData));
-    console.log('useEffect');
-    console.log(userData);
+    if (userData != null) {
+      sessionStorage.setItem('userData', JSON.stringify(userData));
+      allData.map((user) => {
+        if (userData.id === user.id) return (user = userData);
+
+        return user;
+      });
+    }
   }, [userData]);
 
   function login(loginData) {
@@ -47,9 +52,9 @@ const AuthProvider = ({ children }) => {
 
   function updateUserData(thing, data) {
     if (userData == null) return;
-    let updated = userData;
+    let updated = Object.assign({}, userData);
     updated[thing] = [...data];
-    setUserData({ ...updated });
+    setUserData(updated);
   }
 
   return (
