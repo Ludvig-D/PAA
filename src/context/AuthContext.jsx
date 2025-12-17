@@ -7,7 +7,7 @@ const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('allData')) || []
   );
   const [userData, setUserData] = useState(
-    JSON.parse(sessionStorage.getItem('userData')) || ''
+    JSON.parse(sessionStorage.getItem('userData')) || null
   );
 
   useEffect(() => {
@@ -16,6 +16,8 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     sessionStorage.setItem('userData', JSON.stringify(userData));
+    console.log('useEffect');
+    console.log(userData);
   }, [userData]);
 
   function login(loginData) {
@@ -43,8 +45,15 @@ const AuthProvider = ({ children }) => {
     sessionStorage.removeItem('userData');
   }
 
+  function updateUserData(thing, data) {
+    if (userData == null) return;
+    let updated = userData;
+    updated[thing] = data;
+    setUserData({ ...updated });
+  }
+
   return (
-    <AuthContext value={{ createAccount, login, logout }}>
+    <AuthContext value={{ createAccount, login, logout, updateUserData }}>
       {children}
     </AuthContext>
   );

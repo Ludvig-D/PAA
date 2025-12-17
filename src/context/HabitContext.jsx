@@ -1,14 +1,16 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { AuthContext } from './AuthContext';
 
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
+  const { updateUserData } = useContext(AuthContext);
   const [allHabits, setAllHabits] = useState(
-    JSON.parse(localStorage.getItem('habits')) || []
+    JSON.parse(sessionStorage.getItem('userData')).habits || []
   );
 
   useEffect(() => {
-    localStorage.setItem('habits', JSON.stringify(allHabits));
+    updateUserData('habits', allHabits);
     setHabitList(allHabits);
     filterHabits(filter);
   }, [allHabits]);
