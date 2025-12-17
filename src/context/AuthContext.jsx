@@ -17,11 +17,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (userData != null) {
       sessionStorage.setItem('userData', JSON.stringify(userData));
-      allData.map((user) => {
-        if (userData.id === user.id) return (user = userData);
-
-        return user;
-      });
+      setAllData((prev) =>
+        prev.map((user) => {
+          if (userData.id === user.id) return (user = userData);
+          return user;
+        })
+      );
     }
   }, [userData]);
 
