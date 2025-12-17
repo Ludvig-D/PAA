@@ -14,9 +14,15 @@ export const TodoProvider = ({ children }) => {
     setTodos([...todos, newTodo]);
   };
 
+  // LÄGG TILL DENNA FUNKTION
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   const value = {
     todos,
-    addTodo
+    addTodo,
+    deleteTodo  
   };
 
   return (
