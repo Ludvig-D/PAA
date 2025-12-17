@@ -1,15 +1,24 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from './AuthContext';
 
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
   const { updateUserData } = useContext(AuthContext);
-  const [allHabits, setAllHabits] = useState(
-    JSON.parse(sessionStorage.getItem('userData')).habits || []
-  );
+  const [allHabits, setAllHabits] = useState([]);
+
+  const userDataLoaded = useRef(true);
 
   useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) setAllHabits(userData.habits);
+  }, []);
+
+  useEffect(() => {
+    if (userDataLoaded.current && allHabits.length == 0) {
+      userDataLoaded.current = false;
+      return;
+    }
     updateUserData('habits', allHabits);
     setHabitList(allHabits);
     filterHabits(filter);
@@ -24,17 +33,8 @@ const HabitProvider = ({ children }) => {
   };
 
   const removeHabit = (id) => {
-    setAllHabits((prev) =>
-      prev.filter((habit) => {
-        if (habit.id !== id) return habit;
-      })
-    );
-
-    setHabitList((prev) =>
-      prev.filter((habit) => {
-        if (habit.id !== id) return habit;
-      })
-    );
+    setAllHabits((prev) => prev.filter((habit) => habit.id !== id));
+    setHabitList((prev) => prev.filter((habit) => habit.id !== id));
   };
 
   const handelHabitRep = (id, action) => {

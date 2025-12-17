@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
   function updateUserData(thing, data) {
     if (userData == null) return;
     let updated = userData;
-    updated[thing] = data;
+    updated[thing] = [...data];
     setUserData({ ...updated });
   }
 
