@@ -5,6 +5,7 @@ export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
 
+  //Lagt till todo
   const addTodo = (todo) => {
     const newTodo = {
       ...todo,
@@ -14,16 +15,27 @@ export const TodoProvider = ({ children }) => {
     setTodos([...todos, newTodo]);
   };
 
-  // LÄGG TILL DENNA FUNKTION
+  //ta bort todo
   const deleteTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+  };
+  
+  //redigera todo
+  const updateTodo = (id, updatedTodo) => {
+    setTodos(todos.map(todo =>
+      todo.id === id? {...todo, ...updatedTodo}:todo
+    ));
   };
 
   const value = {
     todos,
     addTodo,
-    deleteTodo  
+    deleteTodo,
+    updateTodo
   };
+
+
+
 
   return (
     <TodoContext.Provider value={value}>

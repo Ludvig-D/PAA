@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
 
-const TodoFormComponent = ({ onClose }) => {
-    const { addTodo } = useContext(TodoContext);
+const TodoFormComponent = ({ onClose, todoToEdit }) => {
+    const { addTodo, updateTodo} = useContext(TodoContext);
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState(todoToEdit ||
+        
+        {
         title: '',
         description: '',
         category: 'Övrigt',
@@ -13,13 +15,17 @@ const TodoFormComponent = ({ onClose }) => {
     });
 
     const handleSubmit = () => {
-        addTodo(formData);
-        onClose(); // Stäng modalen
+        if (todoToEdit){
+            updateTodo(todoToEdit.id, formData);
+        } else {
+                addTodo(formData);
+        }
+        onClose(); 
     };
 
     return (
         <div>
-            <h2>Skapa nytt ärende</h2>
+            <h2>{todoToEdit ? "Redigera ärande": "Skapa nyy ärande"}</h2>
             
             {/* Titel */}
             <div>
