@@ -1,10 +1,28 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useRef, useEffect, useContext} from "react"
+
+import { AuthContext } from "./AuthContext.jsx";
 
 export const EventContext = createContext()
 
 export function EventProvider({ children }) {
   const [events, setEvents] = useState([])
 
+  const {updateUserData} = useContext(AuthContext);
+
+  const userDataLoaded = useRef(true);
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) setEvents(userData.events);
+  }, []);
+
+  useEffect(() => {
+    if (userDataLoaded.current && events.length == 0) {
+      userDataLoaded.current = false;
+      return;
+    }
+    updateUserData('events', events);
+  }, [events]);  
   function addEvent(event) {
     const withId = { ...event, id: crypto.randomUUID() }
     const updated = sortEvents([...events, withId])
