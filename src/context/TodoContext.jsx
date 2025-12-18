@@ -27,11 +27,19 @@ export const TodoProvider = ({ children }) => {
     ));
   };
 
+  //status
+  const toggleStatus = (id) =>{
+    setTodos(todos.map(todo=>
+        todo.id === id? {...todo, status: !todo.status} :todo
+    ))
+  }
+
   const value = {
     todos,
     addTodo,
     deleteTodo,
-    updateTodo
+    updateTodo,
+    toggleStatus,
   };
 
 

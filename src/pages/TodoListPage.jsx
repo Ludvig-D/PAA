@@ -4,7 +4,7 @@ import Modal from '../components/Modal';
 import TodoFormComponent from '../components/TodoFormComponent';
 
 const TodoListPage = () => {
-    const { todos, deleteTodo } = useContext(TodoContext);  // ÄNDRAT
+    const { todos, deleteTodo, toggleStatus } = useContext(TodoContext);  // ÄNDRAT
     const [showModal, setShowModal] = useState(false);
     const [todoToEdit, setTodoToEdit] = useState(null);
 
@@ -44,14 +44,29 @@ const TodoListPage = () => {
                             <p>{todo.category}</p>
                             <p>{todo.deadline}</p>
                             <p>{todo.timeEstimate} min</p>
+
+                            <div>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={todo.status}
+                                        onChange={() => toggleStatus(todo.id)}
+                                    />
+                                    <span>
+                                        {todo.status ? 'slutförd' : 'ej slutförd'}
+                                    </span>
+                                </label>
+                            </div>
+
                             <button
                                 onClick={() => handleEdit(todo)}
                                 style={{
-                                 
+                                    //kan styla något härs
                                 }}
                             >
                                 Redigera
                             </button>
+
                             <button onClick={() => deleteTodo(todo.id)}>
                                 Ta bort
                             </button>
