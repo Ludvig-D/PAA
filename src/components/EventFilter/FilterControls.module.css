@@ -6,7 +6,7 @@
   border-radius: 12px;
 }
 
-button {
+.btn {
   border: none;
   background: transparent;
   padding: 8px 16px;
@@ -17,9 +17,7 @@ button {
 }
 
 .active {
-  background:#537310;
+  background: #537310;
   color: white;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
-
-

@@ -1,0 +1,30 @@
+#habitContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 80%;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#test {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+#hideBtn {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background-color: var(--button-color);
+}
+
+#hideBtn:hover {
+  cursor: pointer;
+}
