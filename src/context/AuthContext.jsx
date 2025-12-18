@@ -7,7 +7,7 @@ const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('allData')) || []
   );
   const [userData, setUserData] = useState(
-    JSON.parse(sessionStorage.getItem('userData')) || null
+    JSON.parse(sessionStorage.getItem('userData')) || false
   );
 
   useEffect(() => {
@@ -47,12 +47,12 @@ const AuthProvider = ({ children }) => {
   }
 
   function logout() {
-    setUserData('');
+    setUserData(false);
     sessionStorage.removeItem('userData');
   }
 
   function updateUserData(thing, data) {
-    if (userData == null) return;
+    if (userData == false) return;
     let updated = Object.assign({}, userData);
     updated[thing] = [...data];
     setUserData(updated);

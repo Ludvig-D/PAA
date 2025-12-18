@@ -114,14 +114,14 @@ const HabitProvider = ({ children }) => {
     }
   };
 
-  const [hphl, setHphl] = useState([]);
+  const [homePageHabits, setHomePageHabits] = useState([]);
 
   useEffect(() => {
     const habits = [...allHabits];
 
     const sortedHabits = habits.sort((a, b) => b.repetisions - a.repetisions);
 
-    setHphl([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
+    setHomePageHabits([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
   }, [allHabits]);
 
   return (
@@ -129,7 +129,7 @@ const HabitProvider = ({ children }) => {
       value={{
         allHabits,
         habitList,
-        hphl,
+        homePageHabits,
         addNewHabit,
         removeHabit,
         handelHabitRep,
