@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-export default function SignIn() {
+export default function Login({ handleHideSignUp }) {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,9 +13,9 @@ export default function SignIn() {
       fetch('https://api.kanye.rest/')
         .then((res) => res.json())
         .then((data) => setQuote(data));
+      alert(quote);
     }
   }
-  console.log(quote);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -44,6 +44,10 @@ export default function SignIn() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div>
+        <p>Dont have a account?</p>
+        <button onClick={handleHideSignUp}>Sign Up</button>
+      </div>
     </>
   );
 }

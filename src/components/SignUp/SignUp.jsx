@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function SignUp() {
+export default function SignUp({ handleHideLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -52,7 +52,8 @@ export default function SignUp() {
         </div>
       </form>
       <div>
-        <p>Already have a account? login</p>
+        <p>Already have a account?</p>
+        <button onClick={handleHideLogin}>Login</button>
       </div>
     </>
   );
