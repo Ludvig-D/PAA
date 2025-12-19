@@ -26,17 +26,19 @@ const AuthProvider = ({ children }) => {
     }
   }, [userData]);
 
-  function login(loginData) {
+  async function login(loginData) {
     const { username, password } = loginData;
     let userExist = allData.find((data) => data.username === username);
     if (!userExist || userExist.password !== password) return false;
 
     setUserData(userExist);
 
-    return true;
+    await fetch('https://api.kanye.rest/')
+      .then((res) => res.json())
+      .then((quote) => alert(`Welcome qoute by Kanye West: "${quote.quote}"`));
   }
 
-  function createAccount(newAccount) {
+  async function createAccount(newAccount) {
     let userExist = allData.find(
       (data) => data.username === newAccount.username
     );
@@ -44,6 +46,9 @@ const AuthProvider = ({ children }) => {
 
     setAllData((prev) => [...prev, newAccount]);
     setUserData(newAccount);
+    await fetch('https://api.kanye.rest/')
+      .then((res) => res.json())
+      .then((quote) => alert(`Welcome qoute by Kanye West: "${quote.quote}"`));
   }
 
   function logout() {

@@ -11,13 +11,7 @@ export default function Login({ handleHideSignUp, handleCancelBtn }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    let successFulLogin = login({ username, password });
-    if (successFulLogin) {
-      fetch('https://api.kanye.rest/')
-        .then((res) => res.json())
-        .then((data) => setQuote(data));
-      alert(quote);
-    }
+    login({ username, password });
   }
   return (
     <div id={style.background}>
