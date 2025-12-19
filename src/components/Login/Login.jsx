@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-export default function Login({ handleHideSignUp }) {
+export default function Login({ handleHideSignUp, handleCancelBtn }) {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -48,6 +48,7 @@ export default function Login({ handleHideSignUp }) {
         <p>Dont have a account?</p>
         <button onClick={handleHideSignUp}>Sign Up</button>
       </div>
+      <button onClick={handleCancelBtn}>Cancel</button>
     </>
   );
 }

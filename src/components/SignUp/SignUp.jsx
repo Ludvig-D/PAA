@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function SignUp({ handleHideLogin }) {
+import style from './SignUp.module.css';
+
+export default function SignUp({ handleHideLogin, handleCancelBtn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,38 +25,48 @@ export default function SignUp({ handleHideLogin }) {
   };
 
   return (
-    <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div id={style.background}>
+      <div id={style.foreground}>
+        <h1>Sign Up</h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <button className={style.btn} type="submit">
+              Sign Up
+            </button>
+          </div>
+        </form>
         <div>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            id="username"
-            placeholder="Username"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <p>Already have a account?</p>
+          <button className={style.btn} onClick={handleHideLogin}>
+            Login
+          </button>
         </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            required
-            id="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <button type="submit">Sign Up</button>
-        </div>
-      </form>
-      <div>
-        <p>Already have a account?</p>
-        <button onClick={handleHideLogin}>Login</button>
+        <button className={style.btn} onClick={handleCancelBtn}>
+          Cancel
+        </button>
       </div>
-    </>
+    </div>
   );
 }

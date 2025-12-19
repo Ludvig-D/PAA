@@ -21,6 +21,11 @@ export default function Auth() {
     if (hideLogin) setHideLogin(false);
   };
 
+  const handleCancelBtn = () => {
+    setHideLogin(false);
+    setHideSignup(false);
+  };
+
   return (
     <div>
       {loggedin ? (
@@ -29,8 +34,18 @@ export default function Auth() {
         <>
           <button onClick={handleHideSignUp}>SignUp</button>
           <button onClick={handleHideLogin}>Login</button>
-          {hideSignup && <SignUp handleHideLogin={handleHideLogin} />}
-          {hideLogin && <Login handleHideSignUp={handleHideSignUp} />}
+          {hideSignup && (
+            <SignUp
+              handleHideLogin={handleHideLogin}
+              handleCancelBtn={handleCancelBtn}
+            />
+          )}
+          {hideLogin && (
+            <Login
+              handleHideSignUp={handleHideSignUp}
+              handleCancelBtn={handleCancelBtn}
+            />
+          )}
         </>
       )}
     </div>
