@@ -33,9 +33,7 @@ const AuthProvider = ({ children }) => {
 
     setUserData(userExist);
 
-    await fetch('https://api.kanye.rest/')
-      .then((res) => res.json())
-      .then((quote) => alert(`Welcome qoute by Kanye West: "${quote.quote}"`));
+    welcomeQuote();
   }
 
   async function createAccount(newAccount) {
@@ -46,6 +44,10 @@ const AuthProvider = ({ children }) => {
 
     setAllData((prev) => [...prev, newAccount]);
     setUserData(newAccount);
+    welcomeQuote();
+  }
+
+  async function welcomeQuote() {
     await fetch('https://api.kanye.rest/')
       .then((res) => res.json())
       .then((quote) => alert(`Welcome qoute by Kanye West: "${quote.quote}"`));
