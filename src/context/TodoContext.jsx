@@ -1,9 +1,26 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect, useRef, useContext} from 'react';
+import { AuthContext } from './AuthContext';
 
 export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const userDataLoaded = useRef(true);
+  const {updateUserData}= useContext(AuthContext);
+
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) setTodos(userData.todos);
+  }, []);
+
+  useEffect(() => {
+    if (userDataLoaded.current && todos.length == 0) {
+      userDataLoaded.current = false;
+      return;
+    }
+    updateUserData('todos', todos);
+
+  }, [todos]);
 
   //Lagt till todo
   const addTodo = (todo) => {
