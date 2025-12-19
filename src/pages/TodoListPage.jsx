@@ -7,8 +7,9 @@ const TodoListPage = () => {
     const { todos, deleteTodo, toggleStatus } = useContext(TodoContext);  // ÄNDRAT
     const [showModal, setShowModal] = useState(false);
     const [todoToEdit, setTodoToEdit] = useState(null);
-    const [statusFilter, setStatusFilter]= useState('all');
-    const [selectedCategories, setSelectedCategories] = useState(['Hälsa','Jobbrelaterat', 'Nöje', 'Övrigt']);
+    const [statusFilter, setStatusFilter] = useState('all');
+    const [selectedCategories, setSelectedCategories] = useState(['Hälsa', 'Hushåll', 'Jobbrelaterat', 'Nöje', 'Övrigt']);
+    const categories = ['Hälsa', 'Hushåll', 'Jobbrelaterat', 'Nöje', 'Övrigt'];
 
     const handleEdit = (todo) => {
         setTodoToEdit(todo);
@@ -20,76 +21,65 @@ const TodoListPage = () => {
         setTodoToEdit(null);
     };
 
-    const handleCategoryToggle = (category)=>{
-        if (selectedCategories.includes(category)){
+    const handleCategoryToggle = (category) => {
+        if (selectedCategories.includes(category)) {
             setSelectedCategories(selectedCategories.filter(c => c !== category));
         } else {
-            setSelectedCategories([...selectedCategories,category]);
+            setSelectedCategories([...selectedCategories, category]);
         };
-        
     }
+    
+    const getFilteredTodo = () => {
+        let filtered = todos;
+        //filter på status
+        if (statusFilter === 'completed') {
+            filtered = filtered.filter(todo => todo.status === true);
+        } else if (statusFilter === 'incomplete') {
+            filtered = filtered.filter(todo => todo.status === false);
+        }
+        filtered = filtered.filter(todo => selectedCategories.includes(todo.category));
+
+        return filtered;
+    }
+
     return (
         <div>
             <h1>Todos & Activity</h1>
             <p>Ärande</p>
             <button onClick={() => setShowModal(true)}>Skapa ny</button>
-            
-            
+
+
             {/* Filter panel*/}
             <div>
                 <h3>Filter</h3>
                 <div>
                     <label>Status:</label>
-                    <select value= {statusFilter}
-                        onChange={(e)=>setStatusFilter(e.target.value)}>
+                    <select value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}>
 
-                        
+
                         <option value="all">Alla</option>
                         <option value="completed">Slutförda</option>
                         <option value="incomplete">Ej slutförda</option>
                     </select>
                 </div>
+
+
                 {/*Kategori*/}
 
-               <div>
-    <label>Kategorier:</label>
-    <div>
-        <button 
-            onClick={() => handleCategoryToggle('Hälsa')}
-            style={{ backgroundColor: selectedCategories.includes('Hälsa') ? 'green' : 'gray' }}
-        >
-            Hälsa
-        </button>
-        <button 
-            onClick={() => handleCategoryToggle('Hushåll')}
-            style={{ backgroundColor: selectedCategories.includes('Hushåll') ? 'green' : 'gray' }}
-        >
-            Hushåll
-        </button>
-        <button 
-            onClick={() => handleCategoryToggle('Jobbrelaterat')}
-            style={{ backgroundColor: selectedCategories.includes('Jobbrelaterat') ? 'green' : 'gray' }}
-        >
-            Jobbrelaterat
-        </button>
-        <button 
-            onClick={() => handleCategoryToggle('Nöje')}
-            style={{ backgroundColor: selectedCategories.includes('Nöje') ? 'green' : 'gray' }}
-        >
-            Nöje
-        </button>
-        <button 
-            onClick={() => handleCategoryToggle('Övrigt')}
-            style={{ backgroundColor: selectedCategories.includes('Övrigt') ? 'green' : 'gray' }}
-        >
-            Övrigt
-        </button>
-    </div>
-</div>
-
-
-
-
+                <div>
+                    <label>Kategorier:</label>
+                    <div>
+                        {categories.map(category => (
+                            <button
+                                key={category}
+                                onClick={() => handleCategoryToggle(category)}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             {showModal && (
@@ -102,7 +92,7 @@ const TodoListPage = () => {
             )}
 
             <div>
-                {todos.length === 0 ? (
+                {getFilteredTodo().length === 0 ? (
                     <p>Inga ärenden än. Skapa ett nytt!</p>
                 ) : (
                     todos.map(todo => (
