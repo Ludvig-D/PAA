@@ -1,5 +1,8 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+
+import style from './Login.module.css';
+
 export default function Login({ handleHideSignUp, handleCancelBtn }) {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
@@ -17,38 +20,47 @@ export default function Login({ handleHideSignUp, handleCancelBtn }) {
     }
   }
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            required
-            id="username"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+    <div id={style.background}>
+      <div id={style.foreground}>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username">Username: </label>
+            <input
+              type="text"
+              required
+              id="username"
+              placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
 
+          <div>
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="username"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className={style.btn} type="submit">
+            Login
+          </button>
+        </form>
         <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            required
-            id="password"
-            placeholder="username"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <p>Dont have a account?</p>
+          <button className={style.btn} onClick={handleHideSignUp}>
+            Sign Up
+          </button>
         </div>
-        <button type="submit">Login</button>
-      </form>
-      <div>
-        <p>Dont have a account?</p>
-        <button onClick={handleHideSignUp}>Sign Up</button>
+        <button className={style.btn} onClick={handleCancelBtn}>
+          Cancel
+        </button>
       </div>
-      <button onClick={handleCancelBtn}>Cancel</button>
-    </>
+    </div>
   );
 }
