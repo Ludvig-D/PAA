@@ -3,6 +3,8 @@ import Login from '../Login/Login';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
+import style from './Auth.module.css';
+
 export default function Auth() {
   const [hideLogin, setHideLogin] = useState(false);
   const [hideSignup, setHideSignup] = useState(false);
@@ -29,11 +31,17 @@ export default function Auth() {
   return (
     <div>
       {loggedin ? (
-        <button onClick={logout}>Log out</button>
+        <button className={style.btn} onClick={logout}>
+          Log out
+        </button>
       ) : (
         <>
-          <button onClick={handleHideSignUp}>SignUp</button>
-          <button onClick={handleHideLogin}>Login</button>
+          <button className={style.btn} onClick={handleHideSignUp}>
+            SignUp
+          </button>
+          <button className={style.btn} onClick={handleHideLogin}>
+            Login
+          </button>
           {hideSignup && (
             <SignUp
               handleHideLogin={handleHideLogin}
