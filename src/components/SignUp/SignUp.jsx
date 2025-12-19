@@ -9,7 +9,7 @@ export default function SignUp({ handleHideLogin, handleCancelBtn }) {
 
   const { createAccount } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newAccount = {
@@ -22,6 +22,12 @@ export default function SignUp({ handleHideLogin, handleCancelBtn }) {
     };
 
     createAccount(newAccount);
+
+    await fetch('https://officeapi.akashrajpurohit.com/quote/random')
+      .then((res) => res.json())
+      .then((quote) =>
+        alert(`Welcome qoute by ${quote.character}: "${quote.quote}"`)
+      );
   };
 
   return (

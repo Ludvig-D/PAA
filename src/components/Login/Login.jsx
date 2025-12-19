@@ -7,11 +7,17 @@ export default function Login({ handleHideSignUp, handleCancelBtn }) {
   const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [quote, setQuote] = useState('');
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     login({ username, password });
+    console.log('asdasd');
+
+    await fetch('https://officeapi.akashrajpurohit.com/quote/random')
+      .then((res) => res.json())
+      .then((quote) =>
+        alert(`Welcome qoute by ${quote.character}: "${quote.quote}"`)
+      );
   }
   return (
     <div id={style.background}>
