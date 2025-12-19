@@ -1,14 +1,25 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { AuthContext } from './AuthContext';
 
 export const HabitContext = createContext();
 
 const HabitProvider = ({ children }) => {
-  const [allHabits, setAllHabits] = useState(
-    JSON.parse(localStorage.getItem('habits')) || []
-  );
+  const { updateUserData } = useContext(AuthContext);
+  const [allHabits, setAllHabits] = useState([]);
+
+  const userDataLoaded = useRef(true);
 
   useEffect(() => {
-    localStorage.setItem('habits', JSON.stringify(allHabits));
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData) setAllHabits(userData.habits);
+  }, []);
+
+  useEffect(() => {
+    if (userDataLoaded.current && allHabits.length == 0) {
+      userDataLoaded.current = false;
+      return;
+    }
+    updateUserData('habits', allHabits);
     setHabitList(allHabits);
     filterHabits(filter);
   }, [allHabits]);
@@ -22,17 +33,8 @@ const HabitProvider = ({ children }) => {
   };
 
   const removeHabit = (id) => {
-    setAllHabits((prev) =>
-      prev.filter((habit) => {
-        if (habit.id !== id) return habit;
-      })
-    );
-
-    setHabitList((prev) =>
-      prev.filter((habit) => {
-        if (habit.id !== id) return habit;
-      })
-    );
+    setAllHabits((prev) => prev.filter((habit) => habit.id !== id));
+    setHabitList((prev) => prev.filter((habit) => habit.id !== id));
   };
 
   const handelHabitRep = (id, action) => {
@@ -111,15 +113,15 @@ const HabitProvider = ({ children }) => {
       );
     }
   };
- //Home Page
-  const [HomeHabits, setHphl] = useState([]);
+
+  const [homePageHabits, setHomePageHabits] = useState([]);
 
   useEffect(() => {
     const habits = [...allHabits];
 
     const sortedHabits = habits.sort((a, b) => b.repetisions - a.repetisions);
 
-    setHphl([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
+    setHomePageHabits([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
   }, [allHabits]);
 
   return (
@@ -127,7 +129,7 @@ const HabitProvider = ({ children }) => {
       value={{
         allHabits,
         habitList,
-        HomeHabits,
+        homePageHabits,
         addNewHabit,
         removeHabit,
         handelHabitRep,

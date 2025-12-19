@@ -1,0 +1,27 @@
+.eventitem {
+  background: white;
+  padding: 16px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.grey {
+  opacity: 0.5;
+}
+
+.eventiteminfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eventitem button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #537310;
+  font-size: 13px;
+}
