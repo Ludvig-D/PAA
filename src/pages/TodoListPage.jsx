@@ -21,14 +21,14 @@ const TodoListPage = () => {
         setTodoToEdit(null);
     };
 
-    const handleCategoryToggle = (category) => {
-        if (selectedCategories.includes(category)) {
-            setSelectedCategories(selectedCategories.filter(c => c !== category));
-        } else {
-            setSelectedCategories([...selectedCategories, category]);
-        };
-    }
-    
+    const handleCategorySelect = (category) => {
+        setSelectedCategories([category]);
+    };
+
+    const handleShowAllCategories = () => {
+        setSelectedCategories(categories);
+    };
+
     const getFilteredTodo = () => {
         let filtered = todos;
         //filter på status
@@ -70,10 +70,14 @@ const TodoListPage = () => {
                 <div>
                     <label>Kategorier:</label>
                     <div>
+                        <button onClick={handleShowAllCategories} >
+                            Visa alla
+                        </button>
                         {categories.map(category => (
                             <button
                                 key={category}
-                                onClick={() => handleCategoryToggle(category)}
+                                onClick={() => handleCategorySelect(category)}
+                            
                             >
                                 {category}
                             </button>
@@ -95,7 +99,7 @@ const TodoListPage = () => {
                 {getFilteredTodo().length === 0 ? (
                     <p>Inga ärenden än. Skapa ett nytt!</p>
                 ) : (
-                    todos.map(todo => (
+                    getFilteredTodo().map(todo => (
                         <div key={todo.id}>
                             <h3>{todo.title}</h3>
                             <p>{todo.description}</p>
