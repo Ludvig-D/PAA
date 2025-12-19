@@ -11,7 +11,6 @@ export default function Login({ handleHideSignUp, handleCancelBtn }) {
     e.preventDefault();
 
     login({ username, password });
-    console.log('asdasd');
 
     await fetch('https://officeapi.akashrajpurohit.com/quote/random')
       .then((res) => res.json())
