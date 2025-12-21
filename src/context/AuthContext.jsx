@@ -26,17 +26,15 @@ const AuthProvider = ({ children }) => {
     }
   }, [userData]);
 
-  function login(loginData) {
+  async function login(loginData) {
     const { username, password } = loginData;
     let userExist = allData.find((data) => data.username === username);
     if (!userExist || userExist.password !== password) return false;
 
     setUserData(userExist);
-
-    return true;
   }
 
-  function createAccount(newAccount) {
+  async function createAccount(newAccount) {
     let userExist = allData.find(
       (data) => data.username === newAccount.username
     );

@@ -23,6 +23,7 @@ const Home = () => {
       <button onClick={handleGoToTodos}>Gå till Todos & Activity</button>
       <button onClick={handleGoToEvents}>Gå till Event planer</button>
       <button onClick={handleGoToHabits}>Gå till Habits</button>
+      <Auth />
     </div>
   );
 };
