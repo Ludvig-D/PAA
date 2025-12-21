@@ -1,0 +1,57 @@
+.page {
+  min-height: 100vh;
+  background-color: #66C4D9;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.header h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header p {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #000000;
+}
+
+.navButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.navButtons button {
+  background-color: #6b8e23;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.navButtons button:hover {
+  opacity: 0.9;
+}
+
+.auth {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+}
+
+.content {
+  display: none;
+}
