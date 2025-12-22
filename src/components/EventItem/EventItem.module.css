@@ -5,7 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #66C4D9;
+  border: 4px solid var(--border-color)
 }
 
 .grey {
@@ -22,6 +23,6 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  color: #537310;
+  color:#537310;
   font-size: 13px;
 }
