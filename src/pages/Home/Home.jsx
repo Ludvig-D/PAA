@@ -7,6 +7,7 @@ import EventItem from '../../components/EventItem/EventItem';
 import style from './Home.module.css';
 import { EventContext } from '../../context/EventContext';
 import { TodoContext } from '../../context/TodoContext';
+import TodosItem from '../../components/TodosItem/TodosItem';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Home = () => {
       <div className={style.contentContainer}>
         <div className={style.content}>
           {homePageTodos.map((todo) => (
-            <p>{todo.title}</p>
+          <TodosItem key={todo.id} todo={todo}/>
           ))}
         </div>
         <div className={style.content}>
