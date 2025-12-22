@@ -68,7 +68,7 @@ export const TodoProvider = ({ children }) => {
         setHomePageTodos((prev) => [...prev, filterdTodos[i]]);
       }
     } else {
-      setHomePageHabits([filterdTodos[0], filterdTodos[1], filterdTodos[2]]);
+      setHomePageTodos([filterdTodos[0], filterdTodos[1], filterdTodos[2]]);
     }
   }, [todos]);
 

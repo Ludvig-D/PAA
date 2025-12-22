@@ -2,12 +2,13 @@ import React, { useContext, useState } from "react";
 import { TodoContext } from '../context/TodoContext';
 import Modal from '../components/Modal';
 import TodoFormComponent from '../components/TodoFormComponent';
+import TodosItem from '../components/TodosItem/TodosItem';
 
 const TodoListPage = () => {
         // State för sortering
         const [sortField, setSortField] = useState(''); // "deadline", "timeEstimate", "status"
         const [sortOrder, setSortOrder] = useState('asc'); // "asc" = stigande, "desc" = fallande
-    const { todos, deleteTodo, toggleStatus } = useContext(TodoContext);  // ÄNDRAT
+    const { todos } = useContext(TodoContext);  // ÄNDRAT
     const [showModal, setShowModal] = useState(false);
     const [todoToEdit, setTodoToEdit] = useState(null);
     const [statusFilter, setStatusFilter] = useState('all');
@@ -139,39 +140,7 @@ const TodoListPage = () => {
                     <p>Inga ärenden än. Skapa ett nytt!</p>
                 ) : (
                     getFilteredTodo().map(todo => (
-                        <div key={todo.id}>
-                            <h3>{todo.title}</h3>
-                            <p>{todo.description}</p>
-                            <p>{todo.category}</p>
-                            <p>{todo.deadline}</p>
-                            <p>{todo.timeEstimate} min</p>
-
-                            <div>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        checked={todo.status}
-                                        onChange={() => toggleStatus(todo.id)}
-                                    />
-                                    <span>
-                                        {todo.status ? 'slutförd' : 'ej slutförd'}
-                                    </span>
-                                </label>
-                            </div>
-
-                            <button
-                                onClick={() => handleEdit(todo)}
-                                style={{
-                                    //kan styla något härs
-                                }}
-                            >
-                                Redigera
-                            </button>
-
-                            <button onClick={() => deleteTodo(todo.id)}>
-                                Ta bort
-                            </button>
-                        </div>
+                    <TodosItem key={todo.id} todo={todo} handleEdit={handleEdit} list={true}/>   
                     ))
                 )}
             </div>
