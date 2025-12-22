@@ -10,13 +10,15 @@ export default function Login({ handleHideSignUp, handleCancelBtn }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    login({ username, password });
+    let loggedIn = await login({ username, password });
 
-    await fetch('https://officeapi.akashrajpurohit.com/quote/random')
-      .then((res) => res.json())
-      .then((quote) =>
-        alert(`Welcome qoute by ${quote.character}: "${quote.quote}"`)
-      );
+    if (loggedIn) {
+      await fetch('https://officeapi.akashrajpurohit.com/quote/random')
+        .then((res) => res.json())
+        .then((quote) =>
+          alert(`Welcome qoute by ${quote.character}: "${quote.quote}"`)
+        );
+    }
   }
   return (
     <div id={style.background}>

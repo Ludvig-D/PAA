@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
     if (!userExist || userExist.password !== password) return false;
 
     setUserData(userExist);
+    return true;
   }
 
   async function createAccount(newAccount) {
