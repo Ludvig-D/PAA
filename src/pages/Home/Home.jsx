@@ -6,13 +6,15 @@ import HabitItem from '../../components/HabitItem/HabitItem';
 import EventItem from '../../components/EventItem/EventItem';
 import style from './Home.module.css';
 import { EventContext } from '../../context/EventContext';
+import { TodoContext } from '../../context/TodoContext';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const { homePageHabits } = useContext(HabitContext);
   const { homePageEvents } = useContext(EventContext);
-  console.log('Home page habits:', homePageEvents);
+  const { homePageTodos } = useContext(TodoContext);
+  console.log('Home page habits:', homePageTodos);
 
   const handleGoToTodos = () => {
     navigate('/todos');
@@ -45,7 +47,11 @@ const Home = () => {
       </div>
 
       <div className={style.contentContainer}>
-        <div className={style.content}></div>
+        <div className={style.content}>
+          {homePageTodos.map((todo) => (
+            <p>{todo.title}</p>
+          ))}
+        </div>
         <div className={style.content}>
           {homePageEvents.map((event) => (
             <EventItem key={event.id} event={event} />

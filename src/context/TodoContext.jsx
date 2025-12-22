@@ -52,8 +52,29 @@ export const TodoProvider = ({ children }) => {
     );
   };
 
+  const [homePageTodos, setHomePageTodos] = useState([]);
+
+  useEffect(() => {
+    setHomePageTodos([]);
+
+    const todoItems = [...todos];
+
+    let sortedTodos = todoItems.reverse();
+    let filterdTodos = sortedTodos.filter((todo) => todo.status !== true);
+    console.log(filterdTodos);
+
+    if (filterdTodos.length < 3) {
+      for (let i = 0; i < filterdTodos.length; i++) {
+        setHomePageTodos((prev) => [...prev, filterdTodos[i]]);
+      }
+    } else {
+      setHomePageHabits([filterdTodos[0], filterdTodos[1], filterdTodos[2]]);
+    }
+  }, [todos]);
+
   const value = {
     todos,
+    homePageTodos,
     addTodo,
     deleteTodo,
     updateTodo,
