@@ -15,7 +15,7 @@ export function EventProvider({ children }) {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
     if (userData) setEvents(userData.events);
   }, []);
-
+    
   useEffect(() => {
     if (userDataLoaded.current && events.length == 0) {
       userDataLoaded.current = false;
@@ -43,6 +43,7 @@ export function EventProvider({ children }) {
   function sortEvents(list) {
     return [...list].sort((a, b) => new Date(a.start) - new Date(b.start));
   }
+  
 
   const [homePageEvents, setHomePageEvents] = useState([]);
 

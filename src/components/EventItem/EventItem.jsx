@@ -44,8 +44,10 @@ function EventItem({ event }) {
         <div>{event.name}</div>
         <div>Start {event.start}</div>
         <div>Slut {event.end}</div>
-        <button onClick={() => setEditing(true)}>Redigera</button>
-        <button onClick={() => removeEvent(event.id)}>Ta bort</button>
+        <div className={style.buttoncontainer}>
+        <button className={style.editbutton} onClick={() => setEditing(true)}>Redigera</button>
+        <button className={style.deletebutton} onClick={() => removeEvent(event.id)}>Ta bort</button>
+        </div>
       </div>
     </div>
   );
