@@ -28,7 +28,7 @@ export default function Habits() {
           {'<-- Back'}
         </button>
       </div>
-      <div id={style.test}>
+      <div id={style.con}>
         <button id={style.hideBtn} onClick={() => toggleHide()}>
           Add habit
         </button>
