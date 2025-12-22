@@ -1,58 +1,97 @@
-# Productivity Assistant Application
+# Productivity Assistant Application (PAA)
 
-A lightweight productivity assistant web app for tracking events, habits, and todos. Built with React + Vite and organized for easy local development and extension.
+A comprehensive web-based productivity assistant designed to help users manage their daily tasks, track habits, organize events, and maintain a todo list. Built with modern React and Vite for a fast, responsive user experience.
 
-## Features
+## 🚀 Features
 
-- Authentication (Sign up / Login)
-- Create, edit and filter events
-- Create and track habits with repetitions
-- Todo list management
-- Modular component structure and context-based state
+- **User Authentication**: Secure sign-up and login functionality to personalize your productivity journey.
+- **Event Management**: Create, edit, and filter events with ease. Stay organized with date-based filtering and detailed event descriptions.
+- **Habit Tracking**: Build and monitor habits with repetition tracking. Visualize progress and stay motivated.
+- **Todo List**: Manage daily tasks with a simple, intuitive interface. Add, complete, and organize todos effortlessly.
+- **Modular Architecture**: Clean, component-based structure using React contexts for state management.
+- **Responsive Design**: Optimized for desktop and mobile devices using CSS Modules.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- Frontend: React, Vite
-- Styling: CSS Modules
-- Build tools: npm, Vite
+- **Frontend Framework**: React 19.2.0
+- **Build Tool**: Vite 7.2.4
+- **Routing**: React Router DOM 7.10.1
+- **Styling**: CSS Modules
+- **Linting**: ESLint with React-specific rules
+- **Development**: Hot module replacement with Vite
 
-## Getting Started
+## 📋 Prerequisites
 
-Prerequisites: Node.js (v16+) and npm
+- Node.js (version 16 or higher)
+- npm (comes with Node.js)
 
-1. Install dependencies
+## 🚀 Getting Started
 
-```bash
-npm install
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Ludvig-D/PAA.git
+   cd PAA
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The app will be available at `http://localhost:5173` (default Vite port).
+
+2. Build for production:
+
+   ```bash
+   npm run build
+   ```
+
+3. Preview the production build locally:
+
+   ```bash
+   npm run preview
+   ```
+
+4. Lint the code:
+   ```bash
+   npm run lint
+   ```
+
+## 📁 Project Structure
+
+```
+PAA/
+└── src/
+    ├── components/         # Reusable UI components
+    ├── context/            # React contexts for state management
+    └── pages/              # Page-level components
 ```
 
-2. Run the development server
+## 📖 Usage
 
-```bash
-npm run dev
-```
+1. **Sign Up/Login**: Create an account or log in to access your personalized dashboard.
+2. **Home Page**: Overview of your productivity metrics and quick access to features.
+3. **Events**: Add new events, filter by date, and manage your schedule.
+4. **Habits**: Create habits, track repetitions, and monitor progress over time.
+5. **Todos**: Maintain a list of tasks, mark them complete, and stay on top of your daily goals.
 
-3. Build for production
+## 👥 Authors
 
-```bash
-npm run build
-```
-
-4. Preview production build locally
-
-```bash
-npm run preview
-```
-
-## Project Structure (high level)
-
-- `src/` — application source
-  - `components/` — UI components grouped by feature
-  - `context/` — React contexts for global state (Auth, Events, Habits, Todos)
-  - `pages/` — route/page components
-
-## Authors
-
-Yakub, Ludvig and Taif
+- **Yakub**
+- **Ludvig**
+- **Taif**
 
 ---
+
+Built with ❤️ using React and Vite.
