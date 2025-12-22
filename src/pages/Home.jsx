@@ -8,8 +8,8 @@ import style from './Home.module.css';
 const Home = () => {
   const navigate = useNavigate();
 
-  const {homePageHabits} = useContext(HabitContext);
-  console.log ('Home page habits:', homePageHabits);
+  const { homePageHabits } = useContext(HabitContext);
+  console.log('Home page habits:', homePageHabits);
 
   const handleGoToTodos = () => {
     navigate('/todos');
@@ -26,28 +26,31 @@ const Home = () => {
   return (
     <div className={style.page}>
       <div className={style.header}>
-      <h1>Välkommen!</h1>
-      <p>Här är olika funktionerna att välja ifrån</p>
+        <div className={style.auth}>
+          <Auth />
+        </div>
+        <h1 className={style.headerH1}>Välkommen!</h1>
+        <p className={style.headerText}>
+          Här är olika funktionerna att välja ifrån
+        </p>
 
-      <div className={style.navButtons}>
-      <button onClick={handleGoToTodos}>Gå till Todos & Activity</button>
-      <button onClick={handleGoToEvents}>Gå till Event planer</button>
-      <button onClick={handleGoToHabits}>Gå till Habits</button>
+        <div className={style.navButtons}>
+          <button onClick={handleGoToTodos}>Gå till Todos & Activity</button>
+          <button onClick={handleGoToEvents}>Gå till Event planer</button>
+          <button onClick={handleGoToHabits}>Gå till Habits</button>
+        </div>
       </div>
 
-      <div className={style.auth}>
-      <Auth />
+      <div className={style.contentContainer}>
+        <div className={style.content}></div>
+        <div className={style.content}></div>
+        <div className={style.content}>
+          {homePageHabits.map((habit) => (
+            <HabitItem key={habit.id} habit={habit} />
+          ))}
+        </div>
       </div>
-      </div>
-
-      <div className={style.content}>
-        <div> {homePageHabits.map((habit) => 
-        {habit != undefined && <HabitItem key={habit.id} habit={habit}/> }
-        )}</div>
-      <div></div>
-      <div></div></div>
     </div>
-    
   );
 };
 
