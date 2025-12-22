@@ -117,11 +117,18 @@ const HabitProvider = ({ children }) => {
   const [homePageHabits, setHomePageHabits] = useState([]);
 
   useEffect(() => {
+    setHomePageHabits([]);
     const habits = [...allHabits];
 
     const sortedHabits = habits.sort((a, b) => b.repetisions - a.repetisions);
 
-    setHomePageHabits([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
+    if (sortedHabits.length < 3) {
+      for (let i = 0; i < sortedHabits.length; i++) {
+        setHomePageHabits((prev) => [...prev, sortedHabits[i]]);
+      }
+    } else {
+      setHomePageHabits([sortedHabits[0], sortedHabits[1], sortedHabits[2]]);
+    }
   }, [allHabits]);
 
   return (

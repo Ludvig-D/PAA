@@ -38,8 +38,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 8.5rem;
-  height: 2.5rem;
+  width: 5rem;
+  height: 2rem;
 }
 .removeBtn:hover {
   cursor: pointer;
