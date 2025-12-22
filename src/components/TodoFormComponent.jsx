@@ -68,7 +68,7 @@ const TodoFormComponent = ({ onClose, todoToEdit }) => {
                 <input 
                     type="number"
                     value={formData.timeEstimate}
-                    onChange={(e) => setFormData({...formData, timeEstimate: e.target.value})}
+                    onChange={(e) => setFormData({...formData, timeEstimate: parseInt(e.target.value)})}
                 />
             </div>
 

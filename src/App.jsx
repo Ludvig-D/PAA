@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home.jsx';
 import EventPage from './pages/Events/EventPage.jsx';
 import Habits from './pages/Habits/Habits';
 import TodoListPage from './pages/TodoListPage';

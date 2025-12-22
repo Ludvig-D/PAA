@@ -4,6 +4,9 @@ import Modal from '../components/Modal';
 import TodoFormComponent from '../components/TodoFormComponent';
 
 const TodoListPage = () => {
+        // State för sortering
+        const [sortField, setSortField] = useState(''); // "deadline", "timeEstimate", "status"
+        const [sortOrder, setSortOrder] = useState('asc'); // "asc" = stigande, "desc" = fallande
     const { todos, deleteTodo, toggleStatus } = useContext(TodoContext);  // ÄNDRAT
     const [showModal, setShowModal] = useState(false);
     const [todoToEdit, setTodoToEdit] = useState(null);
@@ -29,21 +32,57 @@ const TodoListPage = () => {
         setSelectedCategories(categories);
     };
 
+    // Funktion som filtrerar och sorterar todos
     const getFilteredTodo = () => {
         let filtered = todos;
-        //filter på status
+        // Filter på status
         if (statusFilter === 'completed') {
             filtered = filtered.filter(todo => todo.status === true);
         } else if (statusFilter === 'incomplete') {
             filtered = filtered.filter(todo => todo.status === false);
         }
+        // Filter på kategori
         filtered = filtered.filter(todo => selectedCategories.includes(todo.category));
 
+        // Sortering
+        if (sortField) {
+            filtered = [...filtered].sort((a, b) => {
+                let aValue = a[sortField];
+                let bValue = b[sortField];
+                // Om vi sorterar på status, konvertera till tal (true/false)
+                if (sortField === 'status') {
+                    aValue = aValue ? 1 : 0;
+                    bValue = bValue ? 1 : 0;
+                }
+                // Om vi sorterar på deadline, konvertera till datum
+                if (sortField === 'deadline') {
+                    aValue = new Date(aValue);
+                    bValue = new Date(bValue);
+                }
+                if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+                if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
         return filtered;
     }
 
+
     return (
         <div>
+            {/* Sorteringspanel */}
+            <div style={{ margin: '1em 0' }}>
+                <h3>Sortering</h3>
+                <label>Sortera på: </label>
+                <button onClick={() => setSortField('deadline')} style={{ fontWeight: sortField === 'deadline' ? 'bold' : 'normal' }}>Deadline</button>
+                <button onClick={() => setSortField('timeEstimate')} style={{ fontWeight: sortField === 'timeEstimate' ? 'bold' : 'normal' }}>Tidsestimat</button>
+                <button onClick={() => setSortField('status')} style={{ fontWeight: sortField === 'status' ? 'bold' : 'normal' }}>Status</button>
+                <button onClick={() => setSortField('')} style={{ fontWeight: sortField === '' ? 'bold' : 'normal' }}>Ingen</button>
+                <br />
+                <label>Ordning: </label>
+                <button onClick={() => setSortOrder('asc')} style={{ fontWeight: sortOrder === 'asc' ? 'bold' : 'normal' }}>Stigande</button>
+                <button onClick={() => setSortOrder('desc')} style={{ fontWeight: sortOrder === 'desc' ? 'bold' : 'normal' }}>Fallande</button>
+            </div>
             <h1>Todos & Activity</h1>
             <p>Ärande</p>
             <button onClick={() => setShowModal(true)}>Skapa ny</button>
