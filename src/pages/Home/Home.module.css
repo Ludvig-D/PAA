@@ -53,6 +53,7 @@
 
 .contentContainer {
   display: flex;
+  gap: 1rem;
 }
 
 .content {

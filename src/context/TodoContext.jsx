@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useRef, useContext} from 'react';
+import { createContext, useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 
 export const TodoContext = createContext();
@@ -6,7 +6,7 @@ export const TodoContext = createContext();
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const userDataLoaded = useRef(true);
-  const {updateUserData}= useContext(AuthContext);
+  const { updateUserData } = useContext(AuthContext);
 
   useEffect(() => {
     const userData = JSON.parse(sessionStorage.getItem('userData'));
@@ -19,7 +19,6 @@ export const TodoProvider = ({ children }) => {
       return;
     }
     updateUserData('todos', todos);
-
   }, [todos]);
 
   //Lagt till todo
@@ -27,29 +26,31 @@ export const TodoProvider = ({ children }) => {
     const newTodo = {
       ...todo,
       id: Date.now(),
-      status: false
+      status: false,
     };
     setTodos([...todos, newTodo]);
   };
 
   //ta bort todo
   const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
-  
+
   //redigera todo
   const updateTodo = (id, updatedTodo) => {
-    setTodos(todos.map(todo =>
-      todo.id === id? {...todo, ...updatedTodo}:todo
-    ));
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTodo } : todo))
+    );
   };
 
   //status
-  const toggleStatus = (id) =>{
-    setTodos(todos.map(todo=>
-        todo.id === id? {...todo, status: !todo.status} :todo
-    ))
-  }
+  const toggleStatus = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, status: !todo.status } : todo
+      )
+    );
+  };
 
   const value = {
     todos,
@@ -59,12 +60,5 @@ export const TodoProvider = ({ children }) => {
     toggleStatus,
   };
 
-
-
-
-  return (
-    <TodoContext.Provider value={value}>
-      {children}
-    </TodoContext.Provider>
-  );
+  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 };
