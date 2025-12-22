@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import Auth from '../components/Auth/Auth';
+import Auth from '../../components/Auth/Auth';
 import { useContext } from 'react';
-import { HabitContext } from '../context/HabitContext';
-import HabitItem from '../components/HabitItem/HabitItem';
+import { HabitContext } from '../../context/HabitContext';
+import HabitItem from '../../components/HabitItem/HabitItem';
 import style from './Home.module.css';
 
 const Home = () => {
