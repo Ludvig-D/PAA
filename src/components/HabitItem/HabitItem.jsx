@@ -20,7 +20,7 @@ export default function HabitItem({ habit }) {
           className={style.removeBtn}
           onClick={() => removeHabit(habit.id)}
         >
-          Remove Habit
+          DELETE
         </button>
       </div>
     </div>
