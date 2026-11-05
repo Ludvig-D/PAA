@@ -1,5 +1,7 @@
 # Productivity Assistant Application (PAA)
 
+> School group project at **Nackademin – Webb25**.
+
 A comprehensive web-based productivity assistant designed to help users manage their daily tasks, track habits, organize events, and maintain a todo list. Built with modern React and Vite for a fast, responsive user experience.
 
 ## 🚀 Features
